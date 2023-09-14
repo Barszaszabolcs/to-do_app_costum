@@ -1,0 +1,15 @@
+---
+method: post
+---
+{% assign age_help = context.params.age | plus: 0 %}
+{% liquid
+    log context.params.age, type: 'age'
+	graphql result = 'film/film_create', title: context.params.title, username: context.params.username, age: age_help, comment: context.params.comment, cover: context.params.cover
+
+	if result.record.id
+		redirect_to '/'
+	else
+		echo 'Something went wrong'
+		echo result.errors
+	endif
+%}

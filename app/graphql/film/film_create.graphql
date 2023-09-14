@@ -1,27 +1,28 @@
 mutation film_create(
-    $title: String,
-    $username: String,
-    $age: Int,
-    $comment: String,
-    $cover: String
+  $title: String, 
+  $username: String, 
+  $age: Int, 
+  $comment: String, 
+  $cover: String
 ) {
-    record: record_create(
-        record: {
-            table: "film"
-            properties: [
-                { name: "title", value: $title },
-                { name: "username", value: $username },
-                { name: "age", value_int: $age },
-                { name: "comment", value: $comment },
-                { name: "cover", value: $cover }
-            ]
-        }
-    ) {
-        id
-        title: property(name: "title")
-        username: property(name: "username")
-        age: property(name: "age")
-        comment: property(name: "comment")
-        cover: property(name: "cover")
+  record: record_create(
+    record: {
+      table: "film", 
+      properties: [
+        {name: "title", value: $title}, 
+        {name: "username", value: $username}, 
+        {name: "age", value_int: $age}, 
+        {name: "comment", value: $comment}, 
+        {name: "cover", value: $cover}
+      ]
     }
+  ) {
+    id
+    title: property(name: "title")
+    username: property(name: "username")
+    age: property(name: "age")
+    comment: property(name: "comment")
+    cover: property(name: "cover")
+    
+  }
 }
