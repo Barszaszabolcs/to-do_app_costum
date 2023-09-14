@@ -1,0 +1,12 @@
+name: film
+properties:
+  - name: title
+    type: string
+  - name: username
+    type: string
+  - name: age
+    type: integer
+  - name: comment
+    type: string
+  - name: cover
+    type: upload
