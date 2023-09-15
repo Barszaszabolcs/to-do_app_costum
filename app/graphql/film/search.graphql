@@ -1,0 +1,20 @@
+query film_search {
+  records: records(
+    per_page: 100
+    filter: {
+      table: { value: "film" }
+    }
+    sort: {
+      updated_at: { order: ASC }
+    }
+  ) {
+    total_entries
+    results {
+      id
+      title: property(name: "title")
+      username: property(name: "username")
+      age: property(name: "age")
+      comment: property(name: "comment")
+    }
+  }
+}

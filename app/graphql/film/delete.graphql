@@ -1,0 +1,10 @@
+mutation film_delete(
+  $id: ID!
+) {
+  record: record_delete(
+    table: "film"
+    id: $id
+  ) {
+    id
+  }
+}

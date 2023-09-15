@@ -1,27 +1,31 @@
+{% liquid
+  graphql films = 'film/search'
+%}
+
 <ul>
-	<li>
-		First item
-		<form action="" method="post">
-			<button type="submit">Mark as done</button>
+  {% for item in films.records.results %}
+    <li>
+      	{{ item.title }}</br>
+	  	{{ item.username }}</br>
+	  	{{ item.age }}</br>
+	  	{{ item.comment }}</br>
+    	<form action="/film/delete" method="post">
+	  		<input type="hidden" name="id" value="{{ item.id }}">
+  			<button type="submit">Delete</button>
 		</form>
-	</li>
-	<li>
-		Second item
-		<form action="" method="post">
-			<button type="submit">Mark as done</button>
-		</form>
-	</li>
+    </li>
+  {% endfor %}
 </ul>
 
-<!-- information shown when the list is empty -->
-<div>There are no items in the list.</div>
+{% if films.records.total_entries == 0 %}
+  <div>There are no films in the list.</div>
+{% endif %}
 
 <!-- form for adding new item -->
 <form action="/film/create" method="post">
-	<input type="text" name="title"></br>
-  <input type="text" name="username"></br>
-  <input type="number" name="age"></br>
-  <textarea type="text" name="comment"></textarea></br>
-  <input type="text" name="cover"></br>
+	<input type="text" name="title" required></br>
+	<input type="text" name="username" required></br>
+	<input type="number" name="age" required></br>
+	<textarea type="text" name="comment" required></textarea></br>
 	<button type="submit">Add item</button>
 </form>
