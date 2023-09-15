@@ -15,6 +15,7 @@ query film_search {
       username: property(name: "username")
       age: property(name: "age")
       comment: property(name: "comment")
+      cover: property(name: "cover")
     }
   }
 }

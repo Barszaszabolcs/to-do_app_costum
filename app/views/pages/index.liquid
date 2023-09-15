@@ -2,30 +2,46 @@
   graphql films = 'film/search'
 %}
 
-<ul>
   {% for item in films.records.results %}
-    <li>
-      	{{ item.title }}</br>
-	  	{{ item.username }}</br>
-	  	{{ item.age }}</br>
-	  	{{ item.comment }}</br>
-    	<form action="/film/delete" method="post">
-	  		<input type="hidden" name="id" value="{{ item.id }}">
-  			<button type="submit">Delete</button>
-		</form>
-    </li>
+		<div class="card">
+  			{% comment %} <img src="img_avatar.png" alt="Avatar" style="width:100%">{% endcomment %}
+  			<div class="container">
+				<img src="{{ item.cover }}" style="width:100%">
+    			<h4><b>Title: {{ item.title }}</b></h4>
+    			<p>User: {{ item.username }}</p>
+				<p>Age: {{ item.age }}</p>
+				<p>{{ item.comment }}</p>
+				<form action="/film/delete" method="post">
+	  				<input type="hidden" name="id" value="{{ item.id }}">
+  					<button type="submit">Delete</button>
+				</form>
+  			</div>
+		</div>
   {% endfor %}
-</ul>
 
 {% if films.records.total_entries == 0 %}
   <div>There are no films in the list.</div>
 {% endif %}
 
-<!-- form for adding new item -->
-<form action="/film/create" method="post">
-	<input type="text" name="title" required></br>
-	<input type="text" name="username" required></br>
-	<input type="number" name="age" required></br>
-	<textarea type="text" name="comment" required></textarea></br>
-	<button type="submit">Add item</button>
-</form>
+<div class="form-container">
+  <form action="/film/create" method="post">
+
+    <label for="title">Title: </label>
+    <input type="text" id="title" name="title" placeholder="Title of the movie" required>
+
+    <label for="username">Username: </label>
+    <input type="text" id="username" name="username" placeholder="Obi-Van" required>
+
+    <label for="age">Age: </label>
+    <input type="number" id="age" name="age" required></br></br>
+
+    <label for="comment">Comment: </label>
+    <textarea id="comment" name="comment" placeholder="Write something.." style="min-height: 150px; height: 150px; max-height: 150px" required></textarea>
+
+	<label for="cover">Cover image url: </label>
+    <input type="text" id="cover" name="cover" required></br></br>
+
+    <input type="submit" value="Add comment">
+
+  </form>
+</div>

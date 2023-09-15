@@ -8,3 +8,5 @@ properties:
     type: integer
   - name: comment
     type: string
+  - name: cover
+    type: string
