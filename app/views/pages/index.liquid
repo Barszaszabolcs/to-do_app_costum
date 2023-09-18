@@ -2,22 +2,22 @@
   graphql films = 'film/search'
 %}
 
-  {% for item in films.records.results %}
-		<div class="card">
-  			{% comment %} <img src="img_avatar.png" alt="Avatar" style="width:100%">{% endcomment %}
-  			<div class="container">
-				<img src="{{ item.cover }}" style="width:100%">
-    			<h4><b>Title: {{ item.title }}</b></h4>
-    			<p>User: {{ item.username }}</p>
-				<p>Age: {{ item.age }}</p>
-				<p>{{ item.comment }}</p>
-				<form action="/film/delete" method="post">
-	  				<input type="hidden" name="id" value="{{ item.id }}">
-  					<button type="submit">Delete</button>
-				</form>
-  			</div>
-		</div>
-  {% endfor %}
+{% for item in films.records.results %}
+  <div class="card">
+      {% comment %} <img src="img_avatar.png" alt="Avatar" style="width:100%">{% endcomment %}
+      <div class="container">
+      <img src="{{ item.cover }}" style="width:100%">
+        <h4><b>Title: {{ item.title }}</b></h4>
+        <p>User: {{ item.username }}</p>
+      <p>Age: {{ item.age }}</p>
+      <p>{{ item.comment }}</p>
+      <form action="/film/delete" method="post">
+          <input type="hidden" name="id" value="{{ item.id }}">
+          <button type="submit">Delete</button>
+      </form>
+      </div>
+  </div>
+{% endfor %}
 
 {% if films.records.total_entries == 0 %}
   <div>There are no films in the list.</div>
@@ -38,7 +38,7 @@
     <label for="comment">Comment: </label>
     <textarea id="comment" name="comment" placeholder="Write something.." style="height: 150px" required></textarea>
 
-	<label for="cover">Cover image url: </label>
+	  <label for="cover">Cover image url: </label>
     <input type="text" id="cover" name="cover" required></br></br>
 
     <input type="submit" value="Add comment">
