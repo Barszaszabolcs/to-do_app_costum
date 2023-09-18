@@ -1,6 +1,8 @@
-query film_search {
+query film_search(
+  $number: Int = 100
+) {
   records: records(
-    per_page: 100
+    per_page: $number
     filter: {
       table: { value: "film" }
     }
