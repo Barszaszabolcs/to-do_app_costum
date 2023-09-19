@@ -1,0 +1,16 @@
+{
+  "name": "to-do_app_costum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./app/assets/styles/app.css -o ./app/assets/styles/output.css",
+    "watch": "tailwindcss -i ./app/assets/styles/app.css -o ./app/assets/styles/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}

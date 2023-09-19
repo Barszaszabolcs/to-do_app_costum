@@ -6,7 +6,7 @@
 <form action="/index" method="get">
   <label for="number">See the top: </label>
   <input type="number" name="number" id="number">
-  <button type="submit">List</button>
+  <button type="submit" class="rounded px-4 py-1 bg-slate-400 hover:bg-slate-500">List</button>
 </form>
 
 {% for item in films.records.results %}
@@ -19,7 +19,7 @@
         <p>{{ item.comment }}</p>
         <form action="/film/delete" method="post">
             <input type="hidden" name="id" value="{{ item.id }}">
-            <button type="submit">Delete</button>
+            <button type="submit" class="rounded px-4 py-1 bg-red-500 hover:bg-red-600">Delete</button>
         </form>
       </div>
     </div>
