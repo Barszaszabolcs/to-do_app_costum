@@ -7,7 +7,7 @@ query film_search(
       table: { value: "film" }
     }
     sort: {
-      updated_at: { order: ASC }
+      properties: { name: "rating", order: DESC }
     }
   ) {
     total_entries
