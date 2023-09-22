@@ -1,9 +1,10 @@
 mutation film_create(
-  $title: String, 
-  $username: String, 
-  $age: Int, 
-  $comment: String,
-  $cover: String! 
+  $title: String,
+  $username: String,
+  $age: Int,
+  $rating: Int,
+  $comment: String
+  $cover: String!
 ) {
   record: record_create(
     record: {
@@ -11,7 +12,8 @@ mutation film_create(
       properties: [
         {name: "title", value: $title}, 
         {name: "username", value: $username}, 
-        {name: "age", value_int: $age}, 
+        {name: "age", value_int: $age},
+        {name: "rating", value_int: $rating}, 
         {name: "comment", value: $comment}, 
         {name: "cover", value: $cover} 
       ]
@@ -21,6 +23,7 @@ mutation film_create(
     title: property(name: "title")
     username: property(name: "username")
     age: property(name: "age")
+    rating: property(name: "rating")
     comment: property(name: "comment")
     cover: property(name: "cover")
   }

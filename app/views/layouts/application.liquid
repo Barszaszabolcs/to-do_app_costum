@@ -3,11 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Best films ever</title>
+		<link rel="stylesheet" href="{{ 'styles/app.css' | asset_url }}">
 		<link rel="stylesheet" href="{{ 'styles/output.css' | asset_url }}">
 	</head>
 	<body>
-		<h1 class="text-4xl">These are the best films in history</h1>
-
+		<div>
+			<h1 class="text-4xl mt-5">These are the best films in history</h1>
+		</div>
+		
 		{{ content_for_layout }}
 	</body>
 </html>

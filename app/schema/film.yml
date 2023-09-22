@@ -6,6 +6,8 @@ properties:
     type: string
   - name: age
     type: integer
+  - name: rating
+    type: integer
   - name: comment
     type: string
   - name: cover
