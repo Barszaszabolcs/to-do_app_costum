@@ -1,12 +1,13 @@
-{% assign number_help = context.params.number | plus: 0 %}
+{% assign number_help = context.params.number | default: 100 | plus: 0 %}
 {% liquid
-  graphql films = 'film/search', number: number_help
+  graphql films = 'film/search', number: number_help, search: context.params.search
 %}
 
 <form action="/index" method="get">
   <label for="number">See the top: </label>
   <input type="number" name="number" id="number">
-  <button type="submit" class="rounded px-4 py-1 bg-slate-400 hover:bg-slate-500">List</button>
+  <input type="text" name="search" id="search">
+  <button type="submit" class="rounded px-4 py-1 bg-slate-400 hover:bg-slate-500">Search</button>
 </form>
 
 {% for item in films.records.results %}

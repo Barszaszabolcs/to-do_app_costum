@@ -1,10 +1,12 @@
 query film_search(
-  $number: Int = 100
+  $number: Int = 100,
+  $search: String
 ) {
   records: records(
     per_page: $number
     filter: {
       table: { value: "film" }
+      properties: { name: "title", contains: $search }
     }
     sort: {
       properties: { name: "rating", order: DESC }
