@@ -1,0 +1,13 @@
+---
+slug: film/:id
+---
+
+{% liquid
+    graphql film = 'film/find', id: context.params.id
+
+    if film.records.total_entries == 0
+        echo '404 FILM NOT FOUND'
+	else
+        render 'film/show', item: film.records.results.first
+	endif
+%}

@@ -1,0 +1,22 @@
+query film_search(
+    $id: ID!
+) {
+  records: records(
+    per_page: 1
+    filter: {
+      table: { value: "film" }
+      id: { value: $id }
+    }
+  ) {
+    total_entries
+    results {
+      id
+      title: property(name: "title")
+      username: property(name: "username")
+      age: property(name: "age")
+      rating: property(name: "rating")
+      comment: property(name: "comment")
+      cover: property(name: "cover")
+    }
+  }
+}

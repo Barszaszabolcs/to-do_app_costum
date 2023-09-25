@@ -11,20 +11,7 @@
 </form>
 
 {% for item in films.records.results %}
-    <div class="card">
-      <div class="container">
-        <img src="{{ item.cover }}" width="275" height="400" loading="eager" style="width: 275px; height: 400px">
-        <h4><b>Title: {{ item.title }}</b></h4>
-        <p>User: {{ item.username }}</p>
-        <p>Age: {{ item.age }}</p>
-        <p>Rating: {{ item.rating }}</p>
-        <p>{{ item.comment }}</p>
-        <form action="/film/delete" method="post">
-            <input type="hidden" name="id" value="{{ item.id }}">
-            <button type="submit" class="rounded px-4 py-1 bg-red-500 hover:bg-red-600">Delete</button>
-        </form>
-      </div>
-    </div>
+    {% render 'film/card', item: item %}
 {% endfor %}
 
 {% if films.records.total_entries == 0 %}
