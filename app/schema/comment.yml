@@ -1,0 +1,11 @@
+name: comment
+properties:
+  - name: username
+    type: string
+  - name: age
+    type: integer
+  - name: rating
+    type: integer
+  - name: comment
+    type: string
+  - name: film_id

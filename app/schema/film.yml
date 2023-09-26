@@ -2,13 +2,7 @@ name: film
 properties:
   - name: title
     type: string
-  - name: username
-    type: string
-  - name: age
-    type: integer
-  - name: rating
-    type: integer
-  - name: comment
+  - name: description
     type: string
   - name: cover
     type: string

@@ -1,8 +1,9 @@
 ---
 method: post
 ---
+
 {% liquid
-	graphql result = 'film/film_create', title: context.params.title, description: context.params.description, cover: context.params.cover
+	graphql result = 'comment/delete', id: context.params.id
 
 	if result.record.id
 		redirect_to '/'

@@ -1,5 +1,63 @@
+<div>
+    <h1 class="text-4xl mt-5">{{ item.title }}<h1>
+</div>
+
 {% render 'film/card', item: item %}
 
-<form>
+{% liquid
+    graphql comments = 'comment/find_film_comment', film_id: item.id
+%}
 
-</form>
+{% if comments.records.total_entries > 0 %}
+    <table class="w-11/12 table-auto border-collapse border border-black">
+        <thead class="bg-lime-300">
+            <tr>
+            <th class="border border-black">Username</th>
+            <th class="border border-black">Age</th>
+            <th class="border border-black">Rating</th>
+            <th class="border border-black">Comment</th>
+            <th class="border border-black">Control</th>
+            </tr>
+        </thead>
+        <tbody class="bg-sky-300">
+            {% for comment in comments.records.results %}
+                <tr>
+                    <td class="border border-black p-1 text-center">{{ comment.username }}</td>
+                    <td class="border border-black p-1 text-center">{{ comment.age }}</td>
+                    <td class="border border-black p-1 text-center">{{ comment.rating }}</td>
+                    <td class="border border-black p-1 text-center">{{ comment.comment }}</td>
+                    <td class="border border-black p-1 text-center">
+                        <form action="/comment/delete" method="post">
+                            <input type="hidden" name="id" value="{{ comment.id }}">
+                            <button type="submit" class="rounded px-2 py-1/2 bg-red-500 hover:bg-red-600">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<div class="form-container mb-5">
+    <form action="/comment/create" method="post">
+        <input type="hidden" name="id" value="{{ item.id }}">
+
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" placeholder="Obi-Van" required>
+  
+        <label for="age">Age: </label>
+        <input type="number" id="age" name="age" required><br><br>
+        
+        <label for="rating">Rating (0-5): </label>
+        <div class="slider">
+          <input type="range" min="0" max="5" value="4" name="rating" id="rating" oninput="rangeValue.innerText = this.value">
+          <p id="rangeValue">4</p>
+        </div>
+        
+        <label for="comment">Comment: </label>
+        <textarea id="comment" name="comment" placeholder="Write something.." style="height: 150px" required></textarea>
+  
+        <input type="submit" value="Add comment">
+  
+    </form>
+</div>

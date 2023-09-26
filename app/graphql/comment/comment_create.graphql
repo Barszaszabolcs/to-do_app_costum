@@ -1,0 +1,27 @@
+mutation comment_create(
+  $username: String,
+  $age: Int,
+  $rating: Int,
+  $comment: String,
+  $film_id: String!
+) {
+  record: record_create(
+    record: {
+      table: "comment", 
+      properties: [
+        {name: "username", value: $username}, 
+        {name: "age", value_int: $age}, 
+        {name: "rating", value_int: $rating}, 
+        {name: "comment", value: $comment}, 
+        {name: "film_id", value: $film_id} 
+      ]
+    }
+  ) {
+    id
+    username: property(name: "username")
+    age: property(name: "age")
+    rating: property(name: "rating")
+    comment: property(name: "comment")
+    film_id: property(name: "film_id")
+  }
+}

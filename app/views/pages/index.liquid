@@ -3,15 +3,19 @@
   graphql films = 'film/search', number: number_help, search: context.params.search
 %}
 
+<div>
+  <h1 class="text-4xl mt-5">Here you can see any kinds of movies</h1>
+</div>
+
 <form action="/index" method="get">
   <label for="number">See the top: </label>
-  <input type="number" name="number" id="number">
-  <input type="text" name="search" id="search">
+  <input type="number" name="number" id="number" placeholder=" 2 (list 2 films)">
+  <input type="text" name="search" id="search" placeholder="Iron Man">
   <button type="submit" class="rounded px-4 py-1 bg-slate-400 hover:bg-slate-500">Search</button>
 </form>
 
 {% for item in films.records.results %}
-    {% render 'film/card', item: item %}
+    {% render 'film/main_card', item: item %}
 {% endfor %}
 
 {% if films.records.total_entries == 0 %}
@@ -24,25 +28,13 @@
     <label for="title">Title: </label>
     <input type="text" id="title" name="title" placeholder="Title of the movie" required>
 
-    <label for="username">Username: </label>
-    <input type="text" id="username" name="username" placeholder="Obi-Van" required>
-
-    <label for="age">Age: </label>
-    <input type="number" id="age" name="age" required><br><br>
-
-    <label for="rating">Rating (0-5): </label>
-    <div class="slider">
-      <input type="range" min="0" max="5" value="4" name="rating" id="rating" oninput="rangeValue.innerText = this.value">
-      <p id="rangeValue">4</p>
-    </div>
-
-    <label for="comment">Comment: </label>
-    <textarea id="comment" name="comment" placeholder="Write something.." style="height: 150px" required></textarea>
+    <label for="description">Description: </label>
+    <textarea id="description" name="description" placeholder="Write something..." style="height: 150px" required></textarea>
 
 	  <label for="cover">Cover image url: </label>
     <input type="text" id="cover" name="cover" required><br><br>
 
-    <input type="submit" value="Add your film and opinion">
+    <input type="submit" value="Add a new movie">
 
   </form>
 </div>
