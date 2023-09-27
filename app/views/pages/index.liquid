@@ -4,19 +4,30 @@
 %}
 
 <div>
-  <h1 class="text-4xl mt-5">Here you can see any kinds of movies</h1>
+  <h1 class="text-5xl m-3">Welcome to share your opinions on films<h1>
 </div>
 
 <form action="/index" method="get">
   <label for="number">See the top: </label>
-  <input type="number" name="number" id="number" placeholder=" 2 (list 2 films)">
+  <input type="number" name="number" id="number" placeholder="2 (list 2 films)" class="p-1">
   <input type="text" name="search" id="search" placeholder="Iron Man">
   <button type="submit" class="rounded px-4 py-1 bg-slate-400 hover:bg-slate-500">Search</button>
 </form>
 
-{% for item in films.records.results %}
-    {% render 'film/main_card', item: item %}
-{% endfor %}
+<div class="grid grid-cols-3 grid-flow-row gap-4">
+  {% for item in films.records.results %}
+    <div class="card">
+      <div class="container">
+        <h2 class="text-center text-1xl"><b>Title: {{ item.title }}</b></h2>
+        <a href="/film/{{ item.id }}"><img src="{{ item.cover }}" class="py-2" width="275" height="400" loading="eager" style="width: 275px; height: 400px"></a>
+        <form action="/film/delete" method="post" class="text-center">
+            <input type="hidden" name="id" value="{{ item.id }}">
+            <button type="submit" class="rounded px-4 py-1 bg-red-500 hover:bg-red-600">Delete</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+</div>
 
 {% if films.records.total_entries == 0 %}
   <div>There are no films in the list.</div>
@@ -29,12 +40,12 @@
     <input type="text" id="title" name="title" placeholder="Title of the movie" required>
 
     <label for="description">Description: </label>
-    <textarea id="description" name="description" placeholder="Write something..." style="height: 150px" required></textarea>
+    <textarea id="description" name="description" placeholder="Write something.." style="height: 150px" required></textarea>
 
 	  <label for="cover">Cover image url: </label>
     <input type="text" id="cover" name="cover" required><br><br>
 
-    <input type="submit" value="Add a new movie">
+    <input type="submit" value="Add new movie">
 
   </form>
 </div>
