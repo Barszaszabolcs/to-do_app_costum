@@ -2,11 +2,28 @@
     <h1 class="text-4xl mt-5">{{ item.title }}<h1>
 </div>
 
-{% render 'film/card', item: item %}
-
 {% liquid
     graphql comments = 'comment/find_film_comment', film_id: item.id
+
+    assign sum = 0
+
+    for comment in comments.records.results
+        assign rating_help = comment.rating | plus: 0
+        assign sum = sum | plus: rating_help
+        assign rating_all = forloop.index | times: 1.0
+    endfor
+
+    assign average = sum | divided_by: rating_all
 %}
+
+<div class="card">
+    <div class="container">
+      <img src="{{ item.cover }}" width="275" height="400" loading="eager" style="width: 275px; height: 400px">
+      <p class="py-2 italic">{{ item.description }}</p>
+      <h3><b>Title: {{ item.title }}</b></h3>
+      <p>Rating: {{ average }}</p>
+    </div>
+  </div>
 
 {% if comments.records.total_entries > 0 %}
     <table class="w-11/12 table-auto border-collapse border border-black">
