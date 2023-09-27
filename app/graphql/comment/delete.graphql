@@ -1,0 +1,10 @@
+mutation comment_delete(
+  $id: ID!
+) {
+  record: record_delete(
+    table: "comment"
+    id: $id
+  ) {
+    id
+  }
+}

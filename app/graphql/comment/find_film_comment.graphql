@@ -1,0 +1,24 @@
+query find_film_comment(
+  $film_id: String!
+) {
+  records: records(
+    per_page: 100
+    filter: {
+      table: { value: "comment" }
+      properties: { name: "film_id", value: $film_id }
+    }
+    sort: {
+      properties: { name: "rating", order: DESC }
+    }
+  ) {
+    total_entries
+    results {
+      id
+      username: property(name: "username")
+      age: property(name: "age")
+      rating: property(name: "rating")
+      comment: property(name: "comment")
+      film_id: property(name: "film_id")
+    }
+  }
+}

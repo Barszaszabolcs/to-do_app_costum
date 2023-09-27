@@ -12,10 +12,7 @@ query film_search(
     results {
       id
       title: property(name: "title")
-      username: property(name: "username")
-      age: property(name: "age")
-      rating: property(name: "rating")
-      comment: property(name: "comment")
+      description: property(name: "description")
       cover: property(name: "cover")
     }
   }

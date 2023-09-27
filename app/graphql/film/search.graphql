@@ -9,17 +9,14 @@ query film_search(
       properties: { name: "title", contains: $search }
     }
     sort: {
-      properties: { name: "rating", order: DESC }
+      updated_at: { order: ASC }
     }
   ) {
     total_entries
     results {
       id
       title: property(name: "title")
-      username: property(name: "username")
-      age: property(name: "age")
-      rating: property(name: "rating")
-      comment: property(name: "comment")
+      description: property(name: "description")
       cover: property(name: "cover")
     }
   }
