@@ -1,0 +1,21 @@
+query find_comment(
+    $id: ID!
+) {
+  records: records(
+    per_page: 1
+    filter: {
+      table: { value: "comment" }
+      id: { value: $id }
+    }
+  ) {
+    total_entries
+    results {
+      id
+      username: property(name: "username")
+      age: property(name: "age")
+      rating: property(name: "rating")
+      comment: property(name: "comment")
+      film_id: property(name: "film_id")
+    }
+  }
+}

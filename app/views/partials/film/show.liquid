@@ -1,5 +1,5 @@
 <div>
-    <h1 class="text-4xl mt-5">{{ item.title }}<h1>
+    <h1 class="text-4xl mt-5">{{ item.title }}</h1>
 </div>
 
 {% liquid
@@ -46,8 +46,9 @@
                     <td class="border border-black p-1 text-center">
                         <form action="/comment/delete" method="post">
                             <input type="hidden" name="id" value="{{ comment.id }}">
-                            <button type="submit" class="rounded px-2 py-1/2 bg-red-500 hover:bg-red-600">Delete</button>
+                            <button type="submit" class="rounded px-2 py-1/2 my-1 bg-red-500 hover:bg-red-600">Delete</button>
                         </form>
+                        <a href="/comment/{{ comment.id }}" class="rounded px-2 py-1 my-1 text-white bg-neutral-700 hover:bg-neutral-800">Update</a>
                     </td>
                 </tr>
             {% endfor %}

@@ -1,0 +1,13 @@
+---
+slug: comment/:id
+---
+
+{% liquid
+    graphql comment = 'comment/find', id: context.params.id
+
+    if comment.records.total_entries == 0
+        echo '404 FILM NOT FOUND'
+	else
+        render 'comment/show_comment', item: comment.records.results.first
+	endif
+%}

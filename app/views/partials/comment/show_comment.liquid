@@ -1,0 +1,27 @@
+<div>
+    <h1 class="text-4xl mt-5">{{ item.username }}'s comment</h1>
+</div>
+
+<div class="form-container mb-5">
+    <form action="/comment/update" method="post">
+        <input type="hidden" name="id" value="{{ item.id }}">
+
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username" value="{{ item.username }}" required>
+  
+        <label for="age">Age: </label>
+        <input type="number" id="age" name="age" value="{{ item.age }}" required><br><br>
+        
+        <label for="rating">Rating (0-5): </label>
+        <div class="slider">
+          <input type="range" min="0" max="5" value="{{ item.rating }}" name="rating" id="rating" oninput="rangeValue.innerText = this.value">
+          <p id="rangeValue">{{ item.rating }}</p>
+        </div>
+        
+        <label for="comment">Comment: </label>
+        <textarea id="comment" name="comment" style="height: 150px" required>{{ item.comment }}</textarea>
+  
+        <input type="submit" value="Update comment">
+  
+    </form>
+</div>
