@@ -56,26 +56,23 @@
     </table>
 {% endif %}
 
+{% if context.current_user.id %}
 <div class="form-container mb-5">
     <form action="/comment/create" method="post">
+        <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
         <input type="hidden" name="id" value="{{ item.id }}">
 
-        <label for="username">Username: </label>
-        <input type="text" id="username" name="username" placeholder="Obi-Van" required>
-  
-        <label for="age">Age: </label>
-        <input type="number" id="age" name="age" required><br><br>
-        
         <label for="rating">Rating (0-5): </label>
         <div class="slider">
           <input type="range" min="0" max="5" value="4" name="rating" id="rating" oninput="rangeValue.innerText = this.value">
           <p id="rangeValue">4</p>
         </div>
-        
+
         <label for="comment">Comment: </label>
         <textarea id="comment" name="comment" placeholder="Write something.." style="height: 150px" required></textarea>
-  
+
         <input type="submit" value="Add comment">
-  
+
     </form>
 </div>
+{% endif %}

@@ -1,0 +1,16 @@
+---
+method: post
+---
+{% liquid
+  if params.name != blank and params.email != blank and params.password != blank
+    graphql result = 'user/create', email: params.email, name: params.name, password: params.password, age: params.age
+    log result, type: 'reg result'
+    unless result.errors
+      sign_in user_id: result.user_create.id
+    endunless
+  else
+    redirect_to '/register'
+  endif
+
+  redirect_to '/'
+%}
