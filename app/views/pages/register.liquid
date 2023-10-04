@@ -6,7 +6,7 @@
 
 <h1 class="text-2xl">Register</h1>
 <div class="p-6 bg-white">
-  <form method="post" action="/api/user/create">
+  <form method="post" action="/user/create">
     <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
     <fieldset class="pb-6">
       <input type="email" name="email" class="p-2 border border-gray-500" placeholder="Email" required>
