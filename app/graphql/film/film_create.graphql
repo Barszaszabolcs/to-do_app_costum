@@ -5,11 +5,11 @@ mutation film_create(
 ) {
   record: record_create(
     record: {
-      table: "film", 
+      table: "film",
       properties: [
-        {name: "title", value: $title}, 
-        {name: "description", value: $description}, 
-        {name: "cover", value: $cover} 
+        {name: "title", value: $title},
+        {name: "description", value: $description},
+        {name: "cover", value: $cover}
       ]
     }
   ) {

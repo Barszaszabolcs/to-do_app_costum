@@ -1,10 +1,14 @@
 {% assign number_help = context.params.number | default: 100 | plus: 0 %}
 {% liquid
   graphql films = 'film/search', number: number_help, search: context.params.search
+
+  if context.current_user.id
+    function user = 'queries/user/load', id: context.current_user.id
+  endif
 %}
 
 <div>
-  <h1 class="text-5xl m-3">Welcome to share your opinions on films<h1>
+  <h1 class="text-5xl m-3">Welcome to share your opinions on films{% if user %}, {{ user.name }}{% endif %}!<h1>
 </div>
 
 <form action="/index" method="get">
