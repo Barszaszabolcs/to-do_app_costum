@@ -19,6 +19,7 @@ query find_film_comment(
       rating: property(name: "rating")
       comment: property(name: "comment")
       film_id: property(name: "film_id")
+      user_id: property(name: "user_id")
     }
   }
 }

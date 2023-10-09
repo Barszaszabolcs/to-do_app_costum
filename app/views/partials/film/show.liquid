@@ -26,9 +26,11 @@
             <th class="border border-black">Age</th>
             <th class="border border-black">Rating</th>
             <th class="border border-black">Comment</th>
-            {% if context.current_user.id %}
-                <th class="border border-black">Control</th>
-            {% endif %}
+            {% for comment in comments.records.results %}
+                {% if context.current_user.id and comment.user_id == context.current_user.id %}
+                    <th class="border border-black">Control</th>
+                {% endif %}
+            {% endfor %}
             </tr>
         </thead>
         <tbody class="bg-sky-300">
@@ -38,7 +40,7 @@
                     <td class="border border-black p-1 text-center">{{ comment.age }}</td>
                     <td class="border border-black p-1 text-center">{{ comment.rating }}</td>
                     <td class="border border-black p-1 text-center">{{ comment.comment }}</td>
-                    {% if context.current_user.id %}
+                    {% if context.current_user.id and comment.user_id == context.current_user.id %}
                         <td class="border border-black p-1 text-center">
                             <form action="/comment/delete" method="post">
                                 <input type="hidden" name="id" value="{{ comment.id }}">

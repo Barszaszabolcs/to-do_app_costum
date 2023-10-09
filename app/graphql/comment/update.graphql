@@ -1,11 +1,9 @@
-mutation comment_update($id: ID!, $username: String!, $age: Int!, $rating: Int!, $comment: String!) {
+mutation comment_update($id: ID!, $rating: Int!, $comment: String!) {
   record:record_update(
     
     id: $id
     record: {
       properties: [
-        { name: "username", value: $username }
-        { name: "age", value_int: $age }
         { name: "rating", value_int: $rating }
         { name: "comment", value: $comment }
       ] 
@@ -17,5 +15,6 @@ mutation comment_update($id: ID!, $username: String!, $age: Int!, $rating: Int!,
     rating: property(name: "rating")
     comment: property(name: "comment")
     film_id: property(name: "film_id")
+    user_id: property(name: "user_id")
   }
 }

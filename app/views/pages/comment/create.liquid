@@ -10,7 +10,7 @@ method: post
   assign rating = context.params.rating | plus: 0
   assign age = user.age | plus: 0
 
-  graphql result = 'comment/comment_create', username: user.name, age: age, rating: rating, comment: context.params.comment, film_id: context.params.id
+  graphql result = 'comment/comment_create', username: user.name, age: age, rating: rating, comment: context.params.comment, film_id: context.params.id, user_id: user.id
 
   if result.record.id
     redirect_to '/'

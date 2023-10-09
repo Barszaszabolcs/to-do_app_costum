@@ -9,3 +9,4 @@ properties:
   - name: comment
     type: string
   - name: film_id
+  - name: user_id

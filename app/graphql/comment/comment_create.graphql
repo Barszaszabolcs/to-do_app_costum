@@ -3,7 +3,8 @@ mutation comment_create(
   $age: Int,
   $rating: Int,
   $comment: String,
-  $film_id: String!
+  $film_id: String!,
+  $user_id: String!
 ) {
   record: record_create(
     record: {
@@ -13,7 +14,8 @@ mutation comment_create(
         {name: "age", value_int: $age}, 
         {name: "rating", value_int: $rating}, 
         {name: "comment", value: $comment}, 
-        {name: "film_id", value: $film_id} 
+        {name: "film_id", value: $film_id}, 
+        {name: "user_id", value: $user_id} 
       ]
     }
   ) {
@@ -23,5 +25,6 @@ mutation comment_create(
     rating: property(name: "rating")
     comment: property(name: "comment")
     film_id: property(name: "film_id")
+    user_id: property(name: "user_id")
   }
 }
