@@ -1,0 +1,14 @@
+---
+from: "no-reply@example.com"
+to: "angolszabi@gmail.com"
+subject: "New Film on the site"
+layout: mailer
+---
+
+<div class="my-1">
+    <h2>The films title: {{ data.title }}</h2>
+</div>
+
+<div class="my-2">
+    <img src="{{ data.cover }}" class="py-2" width="275" height="400" loading="eager" style="width: 275px; height: 400px"><br>
+</div>

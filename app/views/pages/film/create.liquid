@@ -5,6 +5,7 @@ method: post
 	graphql result = 'film/film_create', title: context.params.title, description: context.params.description, cover: context.params.cover
 
 	if result.record.id
+		graphql email = 'film/email/created', data: context.params
 		redirect_to '/'
 	else
 		echo 'Something went wrong'
