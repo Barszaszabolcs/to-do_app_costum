@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="container">
+        {% if main %}
+            <h2 class="text-center text-1xl"><b>Title: {{ item.title }}</b></h2>
+            <a href="/film/{{ item.id }}"><img src="{{ item.cover }}" class="py-2" width="275" height="400" loading="eager" style="width: 275px; height: 400px"></a>
+            <form action="/film/delete" method="post" class="text-center">
+                <input type="hidden" name="id" value="{{ item.id }}">
+                <button type="submit" class="rounded px-4 py-1 bg-red-500 hover:bg-red-600">Delete</button>
+            </form>
+        {% else %}
+            <img src="{{ item.cover }}" width="275" height="400" loading="eager" style="width: 275px; height: 400px">
+            <p class="py-2 italic">{{ item.description }}</p>
+            <p><b>Rating: {{ average }}</b></p>
+        {% endif %}
+    </div>
+</div>

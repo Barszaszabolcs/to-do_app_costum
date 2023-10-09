@@ -16,14 +16,7 @@
     assign average = sum | divided_by: rating_all
 %}
 
-<div class="card">
-    <div class="container">
-      <img src="{{ item.cover }}" width="275" height="400" loading="eager" style="width: 275px; height: 400px">
-      <p class="py-2 italic">{{ item.description }}</p>
-      <h3><b>Title: {{ item.title }}</b></h3>
-      <p>Rating: {{ average }}</p>
-    </div>
-  </div>
+{% render 'film/card', item: item, average: average, main: false %}
 
 {% if comments.records.total_entries > 0 %}
     <table class="w-11/12 table-auto border-collapse border border-black">
