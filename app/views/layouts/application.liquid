@@ -6,13 +6,6 @@
 		<link rel="stylesheet" href="{{ 'styles/output.css' | asset_url }}">
 	</head>
 	<body>
-    <div>
-      {% if context.current_user.id %}
-        <a href="/logout">Log out</a>
-      {% else %}
-        <a href="/login">Log in</a> or <a href="/register">register</a>
-      {% endif %}
-    </div>
 		{{ content_for_layout }}
 	</body>
 </html>

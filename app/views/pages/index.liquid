@@ -7,6 +7,14 @@
   endif
 %}
 
+<div class="mt-3">
+  {% if context.current_user.id %}
+    <a href="/logout" class="rounded px-2 py-1 my-1 text-2xl text-white bg-neutral-700 hover:bg-neutral-800">Log out</a>
+  {% else %}
+    <a href="/login" class="rounded px-2 py-1 my-1 text-white bg-neutral-700 hover:bg-neutral-800 text-2xl">Log in</a><span class="text-2xl"> or </span><a href="/register" class="rounded px-2 py-1 my-1 text-white bg-neutral-700 hover:bg-neutral-800 text-2xl">register</a>
+  {% endif %}
+</div>
+
 <div>
   <h1 class="text-5xl m-3">Welcome to share your opinions on films{% if user %}, {{ user.name }}{% endif %}!<h1>
 </div>
