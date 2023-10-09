@@ -1,9 +1,10 @@
 ---
 method: post
 ---
-{% assign age_help = context.params.age | plus: 0 %}
-{% assign rating_help = context.params.rating | plus: 0 %}
+
 {% liquid
+	assign age_help = context.params.age | plus: 0
+	assign rating_help = context.params.rating | plus: 0
 	graphql result = 'comment/update', id: context.params.id, username: context.params.username, age: age_help, rating: rating_help, comment: context.params.comment
 
 	if result.record.id

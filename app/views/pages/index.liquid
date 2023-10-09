@@ -1,5 +1,5 @@
-{% assign number_help = context.params.number | default: 100 | plus: 0 %}
 {% liquid
+  assign number_help = context.params.number | default: 100 | plus: 0
   graphql films = 'film/search', number: number_help, search: context.params.search
 
   if context.current_user.id
