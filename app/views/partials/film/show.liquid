@@ -13,7 +13,7 @@
         assign rating_all = forloop.index | times: 1.0
     endfor
 
-    assign average = sum | divided_by: rating_all
+    assign average = sum | divided_by: rating_all | round: 2
 %}
 
 {% render 'film/card', item: item, average: average, main: false %}
@@ -26,7 +26,9 @@
             <th class="border border-black">Age</th>
             <th class="border border-black">Rating</th>
             <th class="border border-black">Comment</th>
-            <th class="border border-black">Control</th>
+            {% if context.current_user.id %}
+                <th class="border border-black">Control</th>
+            {% endif %}
             </tr>
         </thead>
         <tbody class="bg-sky-300">
@@ -36,13 +38,15 @@
                     <td class="border border-black p-1 text-center">{{ comment.age }}</td>
                     <td class="border border-black p-1 text-center">{{ comment.rating }}</td>
                     <td class="border border-black p-1 text-center">{{ comment.comment }}</td>
-                    <td class="border border-black p-1 text-center">
-                        <form action="/comment/delete" method="post">
-                            <input type="hidden" name="id" value="{{ comment.id }}">
-                            <button type="submit" class="rounded px-2 py-1/2 my-1 bg-red-500 hover:bg-red-600">Delete</button>
-                        </form>
-                        <a href="/comment/{{ comment.id }}" class="rounded px-2 py-1 my-1 text-white bg-neutral-700 hover:bg-neutral-800">Update</a>
-                    </td>
+                    {% if context.current_user.id %}
+                        <td class="border border-black p-1 text-center">
+                            <form action="/comment/delete" method="post">
+                                <input type="hidden" name="id" value="{{ comment.id }}">
+                                <button type="submit" class="rounded px-2 py-1/2 my-1 bg-red-500 hover:bg-red-600">Delete</button>
+                            </form>
+                            <a href="/comment/{{ comment.id }}" class="rounded px-2 py-1 my-1 text-white bg-neutral-700 hover:bg-neutral-800">Update</a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
@@ -50,22 +54,22 @@
 {% endif %}
 
 {% if context.current_user.id %}
-<div class="form-container mb-5">
-    <form action="/comment/create" method="post">
-        <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
-        <input type="hidden" name="id" value="{{ item.id }}">
+    <div class="form-container mb-5">
+        <form action="/comment/create" method="post">
+            <input type="hidden" name="authenticity_token" value="{{ context.authenticity_token }}">
+            <input type="hidden" name="id" value="{{ item.id }}">
 
-        <label for="rating">Rating (0-5): </label>
-        <div class="slider">
-          <input type="range" min="0" max="5" value="4" name="rating" id="rating" oninput="rangeValue.innerText = this.value">
-          <p id="rangeValue">4</p>
-        </div>
+            <label for="rating">Rating (0-5): </label>
+            <div class="slider">
+            <input type="range" min="0" max="5" value="4" name="rating" id="rating" oninput="rangeValue.innerText = this.value">
+            <p id="rangeValue">4</p>
+            </div>
 
-        <label for="comment">Comment: </label>
-        <textarea id="comment" name="comment" placeholder="Write something.." style="height: 150px" required></textarea>
+            <label for="comment">Comment: </label>
+            <textarea id="comment" name="comment" placeholder="Write something.." style="height: 150px" required></textarea>
 
-        <input type="submit" value="Add comment">
+            <input type="submit" value="Add comment">
 
-    </form>
-</div>
+        </form>
+    </div>
 {% endif %}
