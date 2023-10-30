@@ -14,6 +14,12 @@
     endfor
 
     assign average = sum | divided_by: rating_all | round: 2
+
+    for comment in comments.records.results
+        if context.current_user.id and comment.user_id == context.current_user.id
+            assign user_has_comment = true
+        endif
+    endfor
 %}
 
 {% render 'film/card', item: item, average: average, main: false %}
@@ -26,11 +32,9 @@
             <th class="border border-black">Age</th>
             <th class="border border-black">Rating</th>
             <th class="border border-black">Comment</th>
-            {% for comment in comments.records.results %}
-                {% if context.current_user.id and comment.user_id == context.current_user.id %}
-                    <th class="border border-black">Control</th>
-                {% endif %}
-            {% endfor %}
+            {% if user_has_comment == true %}
+                <th class="border border-black">Control</th>
+            {% endif %}
             </tr>
         </thead>
         <tbody class="bg-sky-300">
@@ -63,14 +67,14 @@
 
             <label for="rating">Rating (0-5): </label>
             <div class="slider">
-            <input type="range" min="0" max="5" value="4" name="rating" id="rating" oninput="rangeValue.innerText = this.value">
-            <p id="rangeValue">4</p>
+                <input class="slider__input" type="range" min="0" max="5" value="4" name="rating" id="rating" oninput="rangeValue.innerText = this.value">
+                <p class="slider__text" id="rangeValue">4</p>
             </div>
 
             <label for="comment">Comment: </label>
-            <textarea id="comment" name="comment" placeholder="Write something.." style="height: 150px" required></textarea>
+            <textarea id="comment" name="comment" class="form-container__textarea" placeholder="Write something.." style="height: 150px" required></textarea>
 
-            <input type="submit" value="Add comment">
+            <input class="form-container__button" type="submit" value="Add comment">
 
         </form>
     </div>

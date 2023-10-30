@@ -7,6 +7,10 @@
   endif
 %}
 
+<div>
+  <h1 class="text-5xl m-6">Welcome to share your opinions on films{% if user %}, {{ user.name }}{% endif %}!<h1>
+</div>
+
 <div class="mt-3">
   {% if context.current_user.id %}
     <a href="/logout" class="rounded px-2 py-1 my-1 text-2xl text-white bg-neutral-700 hover:bg-neutral-800">Log out</a>
@@ -15,14 +19,10 @@
   {% endif %}
 </div>
 
-<div>
-  <h1 class="text-5xl m-3">Welcome to share your opinions on films{% if user %}, {{ user.name }}{% endif %}!<h1>
-</div>
-
-<form action="/index" method="get">
+<form class="search-form text-center" action="/index" method="get">
   <label for="number">See the top: </label>
-  <input type="number" name="number" id="number" placeholder="2 (list 2 films)" class="p-1">
-  <input type="text" name="search" id="search" placeholder="Iron Man">
+  <input class="search-form__number-input" type="number" name="number" id="number" placeholder="2 (list 2 films)" class="p-1">
+  <input class="search-form__search-input" type="text" name="search" id="search" placeholder="Iron Man">
   <button type="submit" class="rounded px-4 py-1 bg-slate-400 hover:bg-slate-500">Search</button>
 </form>
 
@@ -41,15 +41,15 @@
     <form action="/film/create" method="post">
 
       <label for="title">Title: </label>
-      <input type="text" id="title" name="title" placeholder="Title of the movie" required>
+      <input type="text" id="title" name="title" class="form-container__text-input" placeholder="Title of the movie" required>
 
       <label for="description">Description: </label>
-      <textarea id="description" name="description" placeholder="Write something.." style="height: 150px" required></textarea>
+      <textarea id="description" name="description" class="form-container__textarea" placeholder="Write something.." style="height: 150px" required></textarea>
 
       <label for="cover">Cover image url: </label>
-      <input type="text" id="cover" name="cover" required><br><br>
+      <input type="text" id="cover" class="form-container__text-input" name="cover" required><br><br>
 
-      <input type="submit" value="Add new movie">
+      <input class="form-container__button" type="submit" value="Add new movie">
 
     </form>
   </div>
